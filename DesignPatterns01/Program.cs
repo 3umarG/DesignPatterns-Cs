@@ -35,5 +35,23 @@ internal class Program
 		*/
 		#endregion
 
+
+		Task t1 = Task.Factory.StartNew(() =>
+		{
+			var Counter1 = Counter.GetInstance();
+			Counter1.AddOne();
+			Console.WriteLine($"Counter 1 has Count : {Counter1.Count}");
+		});
+
+		Task t2 = Task.Factory.StartNew(() =>
+		{
+
+			var Counter2 = Counter.GetInstance();
+			Counter2.AddOne();
+			Console.WriteLine($"Counter 2 has Count : {Counter2.Count}");
+
+		});
+
+		Console.ReadKey();
 	}
 }
