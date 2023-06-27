@@ -1,0 +1,15 @@
+D:\CS_projects\DesignPatterns\DesignPatterns01\bin\Debug\net6.0\Creational.exe
+D:\CS_projects\DesignPatterns\DesignPatterns01\bin\Debug\net6.0\Creational.deps.json
+D:\CS_projects\DesignPatterns\DesignPatterns01\bin\Debug\net6.0\Creational.runtimeconfig.json
+D:\CS_projects\DesignPatterns\DesignPatterns01\bin\Debug\net6.0\Creational.dll
+D:\CS_projects\DesignPatterns\DesignPatterns01\bin\Debug\net6.0\Creational.pdb
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.csproj.AssemblyReference.cache
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.GeneratedMSBuildEditorConfig.editorconfig
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.AssemblyInfoInputs.cache
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.AssemblyInfo.cs
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.csproj.CoreCompileInputs.cache
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.dll
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\refint\Creational.dll
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.pdb
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\Creational.genruntimeconfig.cache
+D:\CS_projects\DesignPatterns\DesignPatterns01\obj\Debug\net6.0\ref\Creational.dll
