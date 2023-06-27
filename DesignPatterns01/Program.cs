@@ -35,8 +35,8 @@ internal class Program
 		*/
 		#endregion
 
-		#region Singleton without using Lock Thread Safety
-		/*
+		#region Singleton with/without using Lock Thread Safety
+		
 		Task t1 = Task.Factory.StartNew(() =>
 		{
 			var Counter1 = Counter.GetInstance();
@@ -52,7 +52,7 @@ internal class Program
 			Console.WriteLine($"Counter 2 has Count : {Counter2.Count}");
 
 		});
-		*/
+		
 		#endregion
 
 		Console.ReadKey();
