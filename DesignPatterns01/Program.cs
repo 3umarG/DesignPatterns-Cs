@@ -17,6 +17,23 @@ internal class Program
 		*/
 		#endregion
 
-	
+
+		#region Counter Example after using Singleton Pattern + Lazy Initialization
+		/*
+		var Counter1 = Counter.GetInstance();
+		var Counter2 = Counter.GetInstance();
+
+		Counter1.AddOne();
+		Console.WriteLine($"Counter 1 has Count : {Counter1.Count}");
+		Console.WriteLine($"Counter 2 has Count : {Counter2.Count}");
+
+		Console.WriteLine();
+
+		Counter2.AddOne();
+		Console.WriteLine($"Counter 1 has Count : {Counter1.Count}");
+		Console.WriteLine($"Counter 2 has Count : {Counter2.Count}");
+		*/
+		#endregion
+
 	}
 }
