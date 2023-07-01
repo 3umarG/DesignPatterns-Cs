@@ -1,9 +1,13 @@
-﻿using Creational.Singleton.CounterExample;
+﻿using Creational.Prototype;
+using Creational.Singleton.CounterExample;
 
 internal class Program
 {
+
 	private static void Main(string[] args)
 	{
+		#region Singleton Design Pattern
+
 		#region Counter Example without using Singleton Pattern
 		/*
 		var Counter1 = new Counter();
@@ -36,7 +40,7 @@ internal class Program
 		#endregion
 
 		#region Singleton with/without using Lock Thread Safety
-		
+		/*
 		Task t1 = Task.Factory.StartNew(() =>
 		{
 			var Counter1 = Counter.GetInstance();
@@ -52,9 +56,47 @@ internal class Program
 			Console.WriteLine($"Counter 2 has Count : {Counter2.Count}");
 
 		});
-		
+		*/
+		#endregion
+
+		#endregion
+
+		#region Protoype Design Pattern
+		EmployeePrototype employee = new TempEmployee
+		{
+			ID = 1,
+			Name = "Omar",
+			EmpAddress = new Address
+			{
+				Country = "Egypt",
+				City = "Gharbia",
+				Street = "55"
+			}
+		};
+
+
+		//EmployeePrototype employeeCopy = employee.ShallowClone();
+		EmployeePrototype employeeCopy = employee.DeepClone();
+		Console.WriteLine("========== Shallow Clone ==========");
+
+		Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine("========== The base Object ==========");
+		Console.WriteLine(employee.ToString());
+
+		Console.WriteLine("========== The Cloned Object ==========");
+		Console.WriteLine(employeeCopy.ToString());
+
+		employeeCopy.EmpAddress.Country = "Kuwait";
+		Console.ForegroundColor = ConsoleColor.Green;
+		Console.WriteLine("========== The base Object after changed ==========");
+		Console.WriteLine(employee.ToString());
+
+		Console.WriteLine("========== The Cloned Object after changed ==========");
+		Console.WriteLine(employeeCopy.ToString());
+
 		#endregion
 
 		Console.ReadKey();
 	}
+
 }
