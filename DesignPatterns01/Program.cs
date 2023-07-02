@@ -1,4 +1,5 @@
-﻿using Creational.Prototype;
+﻿using Creational.Builder;
+using Creational.Prototype;
 using Creational.Singleton.CounterExample;
 
 internal class Program
@@ -62,6 +63,7 @@ internal class Program
 		#endregion
 
 		#region Protoype Design Pattern
+		/*
 		EmployeePrototype employee = new TempEmployee
 		{
 			ID = 1,
@@ -93,9 +95,42 @@ internal class Program
 
 		Console.WriteLine("========== The Cloned Object after changed ==========");
 		Console.WriteLine(employeeCopy.ToString());
-
+		*/
 		#endregion
 
+		#region Builder Design Pattern
+
+		// The type of product that the client need .
+		IBuilder house = new HouseBuilder();
+		IBuilder villa = new HouseBuilder();
+
+		// The Director that deals with the builder to construct the specific object .
+		var directorForHouse = new Director(house);
+		var directorForVilla = new Director(villa);
+
+		// The Build Order
+		directorForHouse.Build1();
+		directorForVilla.Build2();
+
+        // now !! My builder object has been filled of all its fields and properties without need to construct it by myself
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("========== The House Object ==========");
+		Console.ForegroundColor = ConsoleColor.Magenta;
+		Console.WriteLine(house.ToString());
+
+		Console.ForegroundColor = ConsoleColor.Green;
+		Console.WriteLine("========== The Villa Object ==========");
+		Console.ForegroundColor = ConsoleColor.Magenta;
+		Console.WriteLine(villa.ToString());
+
+
+		Console.ForegroundColor = ConsoleColor.White;
+
+		/// Finally I can make alot and more more ... Builder Objects that may have heavy and complex construction 
+		/// very easy by talk to Director and give it the requirements
+
+		/// **************************** It is the Buildler Pattern ****************************
+		#endregion
 		Console.ReadKey();
 	}
 
