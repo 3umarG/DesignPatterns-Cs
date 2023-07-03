@@ -1,4 +1,7 @@
 ﻿using Creational.Builder;
+using Creational.Factory.Clients;
+using Creational.Factory.Concretes;
+using Creational.Factory.Interfaces;
 using Creational.Prototype;
 using Creational.Singleton.CounterExample;
 
@@ -99,7 +102,7 @@ internal class Program
 		#endregion
 
 		#region Builder Design Pattern
-
+		/*
 		// The type of product that the client need .
 		IBuilder house = new HouseBuilder();
 		IBuilder villa = new HouseBuilder();
@@ -130,6 +133,33 @@ internal class Program
 		/// very easy by talk to Director and give it the requirements
 
 		/// **************************** It is the Buildler Pattern ****************************
+		*/
+		#endregion
+
+		#region Factory Method Design Pattern
+
+		/*
+		 * Any Banks you want to add , you must add only new factory to it and implement 
+		 * IBankFactory for factoris , IBank for banks classes 
+		 * 
+		 * and wallah !!! you generate Factory Method Pattern
+		 */
+		Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("================== Factory Method Pattern ==================");
+		Console.WriteLine();
+		Console.WriteLine();
+
+		Console.ForegroundColor= ConsoleColor.Magenta;
+		IBankFactory bankAFactory = new BankAFactory();
+		IBank bankA = bankAFactory.FactoryMethod();
+        Console.WriteLine(BankClient.Draw(bankA , 566.5));
+
+        Console.WriteLine();
+		
+		Console.ForegroundColor = ConsoleColor.Blue;
+		IBankFactory bankBFactory = new BankBFactory();
+		IBank bankB = bankBFactory.FactoryMethod();
+		Console.WriteLine(BankClient.Draw(bankB, 566.5));
 		#endregion
 		Console.ReadKey();
 	}
