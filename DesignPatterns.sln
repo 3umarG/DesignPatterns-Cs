@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Creational", "DesignPatterns01\Creational.csproj", "{5716FA04-D201-4583-B052-26AE649BAA1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Creational", "DesignPatterns01\Creational.csproj", "{5716FA04-D201-4583-B052-26AE649BAA1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28F5DE6F-A600-4704-B138-53C5492EB9CD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
