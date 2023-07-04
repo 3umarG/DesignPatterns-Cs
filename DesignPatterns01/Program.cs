@@ -1,4 +1,6 @@
-﻿using Creational.Builder;
+﻿using Creational.AbstractFactory.Concretes.Factories;
+using Creational.AbstractFactory.Interfaces;
+using Creational.Builder;
 using Creational.Factory.Clients;
 using Creational.Factory.Concretes;
 using Creational.Factory.Interfaces;
@@ -144,6 +146,8 @@ internal class Program
 		 * 
 		 * and wallah !!! you generate Factory Method Pattern
 		 */
+
+		/*
 		Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("================== Factory Method Pattern ==================");
 		Console.WriteLine();
@@ -160,6 +164,47 @@ internal class Program
 		IBankFactory bankBFactory = new BankBFactory();
 		IBank bankB = bankBFactory.FactoryMethod();
 		Console.WriteLine(BankClient.Draw(bankB, 566.5));
+
+		*/
+		#endregion
+
+
+		#region Abstract Factory Pattern
+		Console.ForegroundColor = ConsoleColor.Yellow;
+		Console.WriteLine("================== Abstarct Factory Pattern ==================");
+		Console.WriteLine();
+		Console.WriteLine();
+
+		Console.ForegroundColor = ConsoleColor.Magenta;
+		IFurnitureFactory basicFurnitureFactory = new BasicFurnitureFactory();
+
+		/// all objects that BasicFurnitureFactory will return will be same in Basic , all have shared .
+		var basicFurnitures = new List<IFurniture>();
+		IChair basicChair = basicFurnitureFactory.CreateChair();
+		ISofa basicSofa = basicFurnitureFactory.CreateSofa();
+		ITable basicTable = basicFurnitureFactory.CreateTable();
+
+		basicFurnitures.AddRange(new List<IFurniture> { basicChair, basicSofa, basicTable });
+		basicFurnitures.ForEach(F => Console.WriteLine(F.GetModel()));
+
+		Console.WriteLine();
+
+
+		Console.ForegroundColor = ConsoleColor.Blue;
+		IFurnitureFactory modernFurnitureFactory = new ModernFurnitureFactory();
+
+		/// all objects that BasicFurnitureFactory will return will be same in Basic , all have shared .
+		var modernFurnitures = new List<IFurniture>();
+		IChair modernChair = modernFurnitureFactory.CreateChair();
+		ISofa modernSofa = modernFurnitureFactory.CreateSofa();
+		ITable modernTable = modernFurnitureFactory.CreateTable();
+
+		modernFurnitures.AddRange(new List<IFurniture> { modernChair, modernSofa, modernTable });
+		modernFurnitures.ForEach(F => Console.WriteLine(F.GetModel()));
+
+		Console.WriteLine();
+
+
 		#endregion
 		Console.ReadKey();
 	}
