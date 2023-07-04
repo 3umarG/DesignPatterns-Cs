@@ -12,6 +12,9 @@ Creational design patterns focus on object creation mechanisms, providing flexib
 
 - [Singleton Pattern](#singleton-pattern)
 - [Prototype Pattern](#prototype-pattern)
+- [Builder Pattern](#builder-pattern)
+- [Factory Method Pattern](#factory-method-pattern)
+- [Abstract Factory Pattern](#abstract-factory-pattern)
 
 ...
 
@@ -171,3 +174,290 @@ public class ConcretePrototype : Prototype
 ```
 
 The choice between deep clone and shallow clone depends on the specific requirements and considerations of your application. If you need independent copies of all objects, including referenced objects, deep clone is suitable. However, if you want multiple objects to share the same referenced objects, shallow clone can be used.
+
+## Builder Pattern
+
+The Builder pattern separates the construction of an object from its representation, allowing the same construction process to create different representations.
+
+#### When to Use the Builder Pattern
+
+The Builder pattern is useful in the following scenarios:
+
+- When the creation of complex objects requires step-by-step initialization or involves multiple optional parameters.
+- When you want to create different representations of an object using the same construction process.
+- When you want to improve readability and maintainability by providing a clear and fluent interface for object construction.
+
+#### Problem Solved by the Builder Pattern
+
+The Builder pattern solves several problems, including:
+
+- **Complex Object Construction**: It provides a way to construct complex objects step by step, allowing the client code to control the construction process.
+- **Flexible Object Creation**: It enables the creation of different representations of an object using the same construction process, providing flexibility and reusability.
+- **Readability and Maintainability**: It improves the readability and maintainability of code by separating the construction logic from the client code and providing a clear and fluent interface for object construction.
+
+#### Code Example
+
+Here's an example of how the Builder pattern can be implemented in C#:
+
+```csharp
+public class Product
+{
+    public string PartA { get; set; }
+    public string PartB { get; set; }
+    public string PartC { get; set; }
+}
+
+public interface IBuilder
+{
+    void BuildPartA();
+    void BuildPartB();
+    void BuildPartC();
+    Product GetResult();
+}
+
+public class ConcreteBuilder : IBuilder
+{
+    private Product product;
+
+    public ConcreteBuilder()
+    {
+        product = new Product();
+    }
+
+    public void BuildPartA()
+    {
+        product.PartA = "Part A";
+    }
+
+    public void BuildPartB()
+    {
+        product.PartB = "Part B";
+    }
+
+    public void BuildPartC()
+    {
+        product.PartC = "Part C";
+    }
+
+    public Product GetResult()
+    {
+        return product;
+    }
+}
+
+public class Director
+{
+    private IBuilder builder;
+
+    public Director(IBuilder builder)
+    {
+        this.builder = builder;
+    }
+
+    public void Construct()
+    {
+        builder.BuildPartA();
+        builder.BuildPartB();
+        builder.BuildPartC();
+    }
+}
+
+// Usage
+var builder = new ConcreteBuilder();
+var director = new Director(builder);
+
+director.Construct();
+var product = builder.GetResult();
+```
+
+
+## Factory Method Pattern
+
+The Factory Method pattern provides an interface for creating objects, but allows subclasses to decide which class to instantiate.
+
+#### When to Use the Factory Method Pattern
+
+The Factory Method pattern is useful in the following scenarios:
+
+- When a class can't anticipate the type of objects it needs to create.
+- When a class wants its subclasses to be responsible for object creation.
+- When a class delegates object creation to one or more helper subclasses.
+
+#### Problem Solved by the Factory Method Pattern
+
+The Factory Method pattern solves several problems, including:
+
+- **Flexible Object Creation**: It provides a way to create objects without specifying the exact class of the object being created.
+- **Decoupling Object Creation**: It decouples the client code from the specific classes of objects being created, promoting flexibility and maintainability.
+- **Code Extensibility**: It allows for easy extension of the object creation process by introducing new subclasses.
+
+#### Code Example
+
+Here's an example of how the Factory Method pattern can be implemented in C#:
+
+```csharp
+public interface IProduct
+{
+    string Operation();
+}
+
+public class ConcreteProductA : IProduct
+{
+    public string Operation()
+    {
+        return "ConcreteProductA";
+    }
+}
+
+public class ConcreteProductB : IProduct
+{
+    public string Operation()
+    {
+        return "ConcreteProductB";
+    }
+}
+
+public abstract class Creator
+{
+    public abstract IProduct FactoryMethod();
+
+    public string SomeOperation()
+    {
+        var product = FactoryMethod();
+        return "Creator: " + product.Operation();
+    }
+}
+
+public class ConcreteCreatorA : Creator
+{
+    public override IProduct FactoryMethod()
+    {
+        return new ConcreteProductA();
+    }
+}
+
+public class ConcreteCreatorB : Creator
+{
+    public override IProduct FactoryMethod()
+    {
+        return new ConcreteProductB();
+    }
+}
+
+// Usage
+var creatorA = new ConcreteCreatorA();
+var productA = creatorA.SomeOperation(); // Output: "Creator: ConcreteProductA"
+
+var creatorB = new ConcreteCreatorB();
+var productB = creatorB.SomeOperation(); // Output: "Creator: ConcreteProductB"
+```
+
+## Abstract Factory Pattern
+
+The Abstract Factory pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+#### When to Use the Abstract Factory Pattern
+
+The Abstract Factory pattern is useful in the following scenarios:
+
+- When a system should be independent of how its products are created, composed, and represented.
+- When a system should be configured with multiple families of products.
+- When a family of related product objects is designed to be used together and you need to enforce this constraint.
+
+#### Problem Solved by the Abstract Factory Pattern
+
+The Abstract Factory pattern solves several problems, including:
+
+- **Encapsulation of Object Creation**: It encapsulates the object creation logic within the factory, providing a clear interface for creating products.
+- **Flexibility and Scalability**: It allows for the addition of new product families without modifying the existing code, promoting flexibility and scalability.
+- **Consistency of Created Objects**: It ensures that the created objects are compatible and belong to the same family, enforcing consistency within the system.
+
+#### Code Example
+
+Here's an example of how the Abstract Factory pattern can be implemented in C#:
+
+```csharp
+public interface IProductA
+{
+    string OperationA();
+}
+
+public interface IProductB
+{
+    string OperationB();
+}
+
+public interface IAbstractFactory
+{
+    IProductA CreateProductA();
+    IProductB CreateProductB();
+}
+
+public class ConcreteProductA1 : IProductA
+{
+    public string OperationA()
+    {
+        return "ConcreteProductA1";
+    }
+}
+
+public class ConcreteProductA2 : IProductA
+{
+    public string OperationA()
+    {
+        return "ConcreteProductA2";
+    }
+}
+
+public class ConcreteProductB1 : IProductB
+{
+    public string OperationB()
+    {
+        return "ConcreteProductB1";
+    }
+}
+
+public class ConcreteProductB2 : IProductB
+{
+    public string OperationB()
+    {
+        return "ConcreteProductB2";
+    }
+}
+
+public class ConcreteFactory1 : IAbstractFactory
+{
+    public IProductA CreateProductA()
+    {
+        return new ConcreteProductA1();
+    }
+
+    public IProductB CreateProductB()
+    {
+        return new ConcreteProductB1();
+    }
+}
+
+public class ConcreteFactory2 : IAbstractFactory
+{
+    public IProductA CreateProductA()
+    {
+        return new ConcreteProductA2();
+    }
+
+    public IProductB CreateProductB()
+    {
+        return new ConcreteProductB2();
+    }
+}
+
+// Usage
+var factory1 = new ConcreteFactory1();
+var productA1 = factory1.CreateProductA();
+var productB1 = factory1.CreateProductB();
+
+var factory2 = new ConcreteFactory2();
+var productA2 = factory2.CreateProductA();
+var productB2 = factory2.CreateProductB();
+
+```
