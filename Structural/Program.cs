@@ -4,6 +4,7 @@ internal class Program
 {
 	private static void Main()
 	{
+		#region Proxy Design Pattern
 		Console.ForegroundColor = ConsoleColor.Green;
 		Console.WriteLine("Applying the Service by using the ConcreteClass Direct :");
 		Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -18,8 +19,9 @@ internal class Program
 		Console.ForegroundColor = ConsoleColor.DarkYellow;
 		var proxy = new Proxy(concreteService);
 		ImplementService(proxy);  // note : we define the proxy as IService so we can pass and use it as Normal Service
-	
-		
+
+		#endregion
+
 		Console.ForegroundColor = ConsoleColor.White;
 	}
 
