@@ -11,12 +11,9 @@ namespace Structural.Proxy
 	/// </summary>
 	public class Proxy : IService
 	{
-		private readonly ConcreteService _service;
+		private ConcreteService _service;
 
-		public Proxy(ConcreteService service)
-		{
-			_service = service;
-		}
+		
 
 		private bool CheckAccess()
 		{
@@ -42,6 +39,9 @@ namespace Structural.Proxy
 		/// </summary>
 		public void DoService()
 		{
+			// lazy initialization
+			_service ??= new ConcreteService();
+
 			if (CheckAccess())
 			{
 				_service.DoService();

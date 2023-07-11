@@ -17,7 +17,7 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Applying the Service by using the Proxy : ");
 		Console.ForegroundColor = ConsoleColor.DarkYellow;
-		var proxy = new Proxy(concreteService);
+		var proxy = new Proxy();
 		ImplementService(proxy);  // note : we define the proxy as IService so we can pass and use it as Normal Service
 
 		#endregion
