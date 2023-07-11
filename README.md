@@ -22,6 +22,7 @@ Creational design patterns focus on object creation mechanisms, providing flexib
 
 Structural design patterns focus on how objects and classes are composed to form larger structures and provide relationships between them.
 
+- [Proxy Pattern](#proxy-pattern)
 ...
 
 ## Behavioral Design Patterns
@@ -459,5 +460,73 @@ var productB1 = factory1.CreateProductB();
 var factory2 = new ConcreteFactory2();
 var productA2 = factory2.CreateProductA();
 var productB2 = factory2.CreateProductB();
+
+```
+
+## Structural Design Patterns
+
+Structural design patterns focus on how objects and classes are composed to form larger structures and provide relationships between them.
+
+### Proxy Pattern
+
+The Proxy pattern provides a surrogate or placeholder for another object to control access to it.
+
+#### When to Use the Proxy Pattern
+
+The Proxy pattern is useful in the following scenarios:
+
+- When you want to add an additional layer of indirection and control over accessing an object.
+- When you want to provide a simplified interface to a complex or resource-intensive object.
+- When you want to control access to an object based on certain conditions or permissions.
+
+#### Problem Solved by the Proxy Pattern
+
+The Proxy pattern solves several problems, including:
+
+- **Access Control**: It allows for controlled access to an object by providing a surrogate.
+- **Resource Management**: It helps in managing and conserving system resources by deferring object creation or initialization until necessary.
+- **Simplified Interface**: It provides a simpler and more focused interface to a complex or resource-intensive object.
+- **Caching** : It provides a mechanism to do caching after you finish the Service or finishing it.
+- **Logging** : In cases you want to use logging your outputs you can do it with the proxy without needing you to do it manually.
+- **Lazy Initialization** : It allows you to use only one instance for your service if it needs heavy initialization object or complex configuration.
+
+#### Code Example
+
+Here's an example of how the Proxy pattern can be implemented in C#:
+
+```csharp
+public interface ISubject
+{
+    void Request();
+}
+
+public class RealSubject : ISubject
+{
+    public void Request()
+    {
+        Console.WriteLine("RealSubject: Handling request.");
+    }
+}
+
+public class Proxy : ISubject
+{
+    private RealSubject realSubject;
+
+    public void Request()
+    {
+        if (realSubject == null)
+        {
+            Console.WriteLine("Proxy: Creating RealSubject.");
+            realSubject = new RealSubject();
+        }
+
+        Console.WriteLine("Proxy: Forwarding request to RealSubject.");
+        realSubject.Request();
+    }
+}
+
+// Usage
+var proxy = new Proxy();
+proxy.Request();
 
 ```
