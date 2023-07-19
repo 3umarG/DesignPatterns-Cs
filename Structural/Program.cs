@@ -1,4 +1,5 @@
 ﻿using Structural.Adapter;
+using Structural.Decorator;
 using Structural.Proxy;
 
 internal class Program
@@ -39,7 +40,28 @@ internal class Program
 		*/
 		#endregion
 
-		Console.ForegroundColor = ConsoleColor.White;
+		#region Decorator Design Pattern 
+		Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Using Order Processor without using Decorator Pattern : ");
+
+        Order order = new() { ID = 1, Count = 0, Price = 563 };
+		IOrderProcessor concreteOrderProcssor = new OrderProcessorConcrete();
+		Console.ForegroundColor = ConsoleColor.Green;
+		Console.WriteLine(concreteOrderProcssor.Process(order));
+
+		Console.WriteLine("\n");
+
+        Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine("Using Order Processor with using Decorator Pattern : ");
+
+		Console.ForegroundColor = ConsoleColor.Green;
+		concreteOrderProcssor = new OrderProcessorExceptionHandlingDecorator(concreteOrderProcssor);
+		concreteOrderProcssor = new OrderProcessorLoggingDecorator(concreteOrderProcssor);
+        Console.WriteLine(concreteOrderProcssor.Process(order));
+
+        #endregion
+
+        Console.ForegroundColor = ConsoleColor.White;
 	}
 
 	private static void ImplementService(IService service)
