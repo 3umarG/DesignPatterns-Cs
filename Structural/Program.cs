@@ -1,5 +1,6 @@
 ﻿using Structural.Adapter;
 using Structural.Decorator;
+using Structural.Facade;
 using Structural.Proxy;
 
 internal class Program
@@ -41,6 +42,7 @@ internal class Program
 		#endregion
 
 		#region Decorator Design Pattern 
+		/*
 		Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Using Order Processor without using Decorator Pattern : ");
 
@@ -58,10 +60,20 @@ internal class Program
 		concreteOrderProcssor = new OrderProcessorExceptionHandlingDecorator(concreteOrderProcssor);
 		concreteOrderProcssor = new OrderProcessorLoggingDecorator(concreteOrderProcssor);
         Console.WriteLine(concreteOrderProcssor.Process(order));
+		*/
+		#endregion
+		
+		#region Facade Design Pattern
 
-        #endregion
+		var system = new ComplexSystemServiceClass();
+		var facade = new PaymentFacade(system);
 
-        Console.ForegroundColor = ConsoleColor.White;
+		// as a client , you don't need to deal directly with the complex service 
+		// by Facade you have as interface that provide only specific methods and access to what you need or want.
+		facade.Pay();
+
+		#endregion
+		Console.ForegroundColor = ConsoleColor.White;
 	}
 
 	private static void ImplementService(IService service)
