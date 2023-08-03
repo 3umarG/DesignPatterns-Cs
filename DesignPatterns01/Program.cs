@@ -1,6 +1,7 @@
 ﻿using Creational.AbstractFactory.Concretes.Factories;
 using Creational.AbstractFactory.Interfaces;
 using Creational.Builder;
+using Creational.Builder.StudentEx;
 using Creational.Factory.Clients;
 using Creational.Factory.Concretes;
 using Creational.Factory.Interfaces;
@@ -136,6 +137,17 @@ internal class Program
 
 		/// **************************** It is the Buildler Pattern ****************************
 		*/
+
+		// Using another way of Builder : 
+		var student = Student.builder()
+								.Name("Omar")
+								.Age(22)
+								.Addrees("Egypt")
+								.GPA(3.4)
+								.build();
+		Console.WriteLine(student.Name);
+		Console.WriteLine(student.Address);
+		Console.WriteLine(student.GPA);
 		#endregion
 
 		#region Factory Method Design Pattern
@@ -170,6 +182,7 @@ internal class Program
 
 
 		#region Abstract Factory Pattern
+		/*
 		Console.ForegroundColor = ConsoleColor.Yellow;
 		Console.WriteLine("================== Abstarct Factory Pattern ==================");
 		Console.WriteLine();
@@ -204,7 +217,7 @@ internal class Program
 
 		Console.WriteLine();
 
-
+		*/
 		#endregion
 		Console.ReadKey();
 	}
