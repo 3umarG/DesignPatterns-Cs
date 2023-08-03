@@ -43,6 +43,7 @@ Creational design patterns focus on object creation mechanisms, providing flexib
 Structural design patterns focus on how objects and classes are composed to form larger structures and provide relationships between them.
 
 - [Proxy Pattern](#proxy-pattern)
+- [Adapter Pattern](#adapter-pattern)
 ...
 
 ## Behavioral Design Patterns
@@ -549,4 +550,64 @@ public class Proxy : ISubject
 var proxy = new Proxy();
 proxy.Request();
 
+```
+
+### Adapter Pattern
+
+The Adapter pattern allows objects with incompatible interfaces to work together by providing a wrapper that converts one interface into another.
+
+#### When to Use the Adapter Pattern
+
+The Adapter pattern is useful in the following scenarios:
+
+- When you want to use an existing class that doesn't have the interface you need.
+- When you want to create a reusable class that interacts with multiple existing classes with different interfaces.
+- When you want to decouple the client code from the specifics of multiple third-party libraries.
+
+#### Problem Solved by the Adapter Pattern
+
+The Adapter pattern solves several problems, including:
+
+- **Interface Incompatibility**: It allows objects with incompatible interfaces to work together by providing a common interface.
+- **Reusability**: It enables the reuse of existing classes that may not have the desired interface.
+- **Client-Centric Design**: It decouples the client code from the specific interfaces of multiple third-party classes, making the client code more maintainable.
+
+#### Code Example
+
+Here's an example of how the Adapter pattern can be implemented in C#:
+
+```csharp
+public interface ITarget
+{
+    string GetRequest();
+}
+
+public class Adaptee
+{
+    public string GetSpecificRequest()
+    {
+        return "Specific request.";
+    }
+}
+
+public class Adapter : ITarget
+{
+    private readonly Adaptee adaptee;
+
+    public Adapter(Adaptee adaptee)
+    {
+        this.adaptee = adaptee;
+    }
+
+    // in most cases the Client/Target and Adaptee/Service or 3-rd part library will be Incompatible , this is so trivial example
+    public string GetRequest()
+    {
+        return $"This is '{adaptee.GetSpecificRequest()}'";
+    }
+}
+
+// Usage
+var adaptee = new Adaptee();
+var adapter = new Adapter(adaptee);
+var result = adapter.GetRequest(); // Output: "This is 'Specific request.'"
 ```
